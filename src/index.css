@@ -1,5 +1,10 @@
 *{
   font-weight: lighter !important;
+ 
+}
+html,body{
+  height: 100%;
+  width: 100%;
 }
 
 h1{
@@ -149,4 +154,62 @@ body{
   color: rgb(77, 77, 77);
   display: block !important;
   margin: 0 auto !important;
+}
+.sendMsgBtn{
+  text-align: center;
+  padding: 2px 8px !important;
+}
+.chofer-msg{
+  background-color: #fff1d0 !important;
+  margin-left: 30% !important;
+  margin-top: 15px !important;
+  padding: 15px !important;
+  font-weight: 400 !important;
+  
+}
+.user-msg{
+  margin-right: 30% !important;
+  margin-top: 15px !important;
+  padding: 15px !important;
+  width: fit-content;
+  padding-right: 15px !important;
+  font-weight: 400 !important;
+}
+.name-msg{
+  color: #ff9100 !important;
+  margin: 0px;
+}
+.time-msg{
+  margin: 0px;
+}
+
+.scrollable{
+  padding: 20px !important;
+  height: 65vh !important;
+  overflow: auto !important;
+}
+
+.send-btn{
+  height: 50px !important;
+  background-color: #ff9100 !important;
+}
+/************************* SCROLL BAR ************************/
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #EEEEEE;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #999;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

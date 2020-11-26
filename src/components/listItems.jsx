@@ -14,13 +14,13 @@ export default function ItemList({ index }) {
   return (
     <div>
 
-      <Link  to="/inicio" className="white link">
-      <ListItem button className="listItem" style={index === 0 ? { backgroundColor: '#ff9100' } : {}}>
-        <ListItemIcon>
-          <DashboardIcon className="white" />
-        </ListItemIcon>
-        <ListItemText primary="Inicio" />
-      </ListItem>
+      <Link to="/inicio" className="white link">
+        <ListItem button className="listItem" style={index === 0 ? { backgroundColor: '#ff9100' } : {}}>
+          <ListItemIcon>
+            <DashboardIcon className="white" />
+          </ListItemIcon>
+          <ListItemText primary="Inicio" />
+        </ListItem>
       </Link>
 
       <ListItem button className="listItem" style={index === 1 ? { backgroundColor: '#ff9100' } : {}}>
@@ -29,14 +29,15 @@ export default function ItemList({ index }) {
         </ListItemIcon>
         <ListItemText primary="Servicio" />
       </ListItem>
+      <Link to="/mapa" className="white link">
 
-      <ListItem button className="listItem" style={index === 2 ? { backgroundColor: '#ff9100' } : {}}>
-        <ListItemIcon>
-          <LocationOnIcon className="white" />
-        </ListItemIcon>
-        <ListItemText primary="Mapa" />
-      </ListItem>
-
+        <ListItem button className="listItem" style={index === 2 ? { backgroundColor: '#ff9100' } : {}}>
+          <ListItemIcon>
+            <LocationOnIcon className="white" />
+          </ListItemIcon>
+          <ListItemText primary="Mapa" />
+        </ListItem>
+      </Link>
       <Link to="/choferes" className="white link">
         <ListItem button className="listItem" style={index === 3 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
@@ -62,12 +63,14 @@ export default function ItemList({ index }) {
         </ListItem>
       </Link>
 
-      <ListItem button className="listItem" style={index === 6 ? { backgroundColor: '#ff9100' } : {}}>
-        <ListItemIcon>
-          <MessageIcon className="white" />
-        </ListItemIcon>
-        <ListItemText primary="Mensajes" />
-      </ListItem>
+      <Link to="/Mensajes" className="white link">
+        <ListItem button className="listItem" style={index === 6 ? { backgroundColor: '#ff9100' } : {}}>
+          <ListItemIcon>
+            <MessageIcon className="white" />
+          </ListItemIcon>
+          <ListItemText primary="Mensajes" />
+        </ListItem>
+      </Link>
     </div>
   );
 }
