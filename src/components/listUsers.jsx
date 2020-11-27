@@ -10,8 +10,9 @@ import Avatar from '@material-ui/core/Avatar';
 import SendIcon from '@material-ui/icons/Send';
 
 export default function ListUsers({ usersList }) {
-
-    
+    const saveValuesLocal = (values)=>{
+        localStorage.setItem('tu-chofer-user',JSON.stringify(values))
+    }
     const saveDataToLocalStorage = (user)=>{
         localStorage.setItem('tu-chofer-chat', JSON.stringify(user))
     }
@@ -34,7 +35,7 @@ export default function ListUsers({ usersList }) {
                         <TableCell>{user.phone}</TableCell>
                         <TableCell>
                             <Button
-                                variant="contained" color="secondary" onClick={() => { }} component={Link} to='usuarios/detalles'>
+                                variant="contained" color="secondary" onClick={() => saveValuesLocal(user)} component={Link} to='usuarios/detalles'>
                                 Ver
                              </Button>
                         </TableCell>

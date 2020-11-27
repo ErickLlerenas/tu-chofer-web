@@ -9,7 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsersSlash } from '@fortawesome/free-solid-svg-icons'
 import { GoogleMap, LoadScript,Marker  } from '@react-google-maps/api';
-
+ 
 export default function DriversMap() {
   const [markers, setMarkers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Container } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -10,8 +10,13 @@ import { db } from "../firebase"
 export default function ChatView({ messages, userType, phone }) {
 
     const [message, setMessage] = useState('');
+    const messagesEndRef = useRef(null)
 
+    const scrollToBottom = () => {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+    }
 
+    useEffect(scrollToBottom, [messages]);
 
     const handleChange = (e) => {
         setMessage(e.target.value)
@@ -19,8 +24,7 @@ export default function ChatView({ messages, userType, phone }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (message !== undefined) {
-            console.log(message);
+        if (message !== undefined && message.length > 0) {
             db.collection(userType).doc(phone).get().then((m) => {
                 let temp = [...m.data().messages];
                 temp.push({
@@ -50,10 +54,10 @@ export default function ChatView({ messages, userType, phone }) {
                                 <p className="name-msg">{m.name}</p>
                                 {m.message}
                                 <p className="time-msg">{m.time.toDate().getHours()}:{m.time.toDate().getMinutes()}</p>
-                                {console.log(m.time)}
                             </Paper>
                     ))
                 }
+                <div ref={messagesEndRef}/>
             </Container>
            <form onSubmit={handleSubmit}>
            <br />
@@ -61,6 +65,7 @@ export default function ChatView({ messages, userType, phone }) {
                 <Grid item xs={11}>
                     <TextField
                         value={message}
+                        autoComplete="off"
                         onChange={handleChange}
                         id="outlined-basic" variant="outlined" style={{ backgroundColor: 'white', width: '100%' }} />
 
