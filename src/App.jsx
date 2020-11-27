@@ -10,7 +10,7 @@ import DriverDetails from './pages/DriverDetails';
 import DriversMap from './pages/DriversMap';
 import Chats from './pages/Chats'
 import Chat from './pages/Chat'
-
+import UserDetails from './pages/UserDetails'
 
 import {
   BrowserRouter as Router,
@@ -36,6 +36,9 @@ function App() {
         </Route>
         <Route exact path="/usuarios">
           <Users/>
+        </Route>
+        <Route exact path="/usuarios/detalles">
+          <UserDetails/>
         </Route>
         <Route exact path="/choferes/detalles">
           <DriverDetails/>

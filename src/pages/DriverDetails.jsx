@@ -65,7 +65,7 @@ export default function DriverDetails() {
                 <a href={driver.image} target="_blank" rel="noreferrer">
                 <Avatar alt="Remy Sharp" src={driver.image} className="avatar" />
                 </a>
-              <Card className="request-driver-card">
+              <Card className="request-card">
                 <div className="sizedBox" />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
@@ -85,7 +85,7 @@ export default function DriverDetails() {
                 <a href={driver.car} target="_blank" rel="noreferrer">
                 <Avatar alt="Remy Sharp" src={driver.car} className="avatar" />
                 </a>
-              <Card className="request-driver-card">
+              <Card className="request-card">
                 <div className="sizedBox" />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">

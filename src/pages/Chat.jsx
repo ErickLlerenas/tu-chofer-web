@@ -6,8 +6,6 @@ import ChatView from '../components/ChatView';
 import MyDrawer from '../components/MyDrawer';
 import { db } from "../firebase";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCommentSlash } from '@fortawesome/free-solid-svg-icons';
 
 export default function Chat() {
     const [messages, setMessages] = useState([]);
@@ -36,7 +34,6 @@ export default function Chat() {
                 db.collection("Users").doc( data.phone )
                 .onSnapshot(function(doc) {
                     temp =[]
-                    if (doc.data().isAccepted)
                     doc.data().messages.forEach((m)=>{
                         temp.push(m);
     
