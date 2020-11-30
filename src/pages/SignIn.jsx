@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -9,15 +9,42 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Logo from '../assets/Logo.png'
+import { db } from "../firebase"
+import Swal from 'sweetalert2'
 
 export default function SignInSide() {
 
-    const [isChecked, setIsChecked] = useState(false);
+    const [credentials, setCredentials] = useState({});
+    const [userCredentials, setUserCredentials] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        window.location.href = 'inicio'
+        if(credentials.password == userCredentials.password && credentials.mail == userCredentials.mail){
+            sessionStorage.setItem('tu-chofer-credentials',JSON.stringify(credentials));
+            window.location.href = 'inicio'
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Usuario incorrecto',
+                text: 'La contraseña o el correo no son correctos',
+              })
+        }
     }
+
+    const handleChange = (e) => {
+        setUserCredentials({
+            ...userCredentials,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    useEffect(() => {
+        db.collection('Web').doc('credentials').get().then((doc) => {
+            if (doc.data())
+                setCredentials(doc.data());
+        })
+    }, [])
+
     return (
         <Grid container className="root">
             <CssBaseline />
@@ -30,17 +57,21 @@ export default function SignInSide() {
           </Typography>
                     <form className='form' onSubmit={handleSubmit}>
                         <TextField
+                            autoComplete="off"
+                            onChange={handleChange}
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
                             id="email"
                             label="Correo electrónico"
-                            name="email"
+                            name="mail"
                             type="email"
                             color="secondary"
                         />
                         <TextField
+                            autoComplete="off"
+                            onChange={handleChange}
                             variant="outlined"
                             margin="normal"
                             required
@@ -51,10 +82,7 @@ export default function SignInSide() {
                             id="password"
                             color="secondary"
                         />
-                        <FormControlLabel
-                            control={<Checkbox checked={isChecked} color="secondary" onChange={() => setIsChecked(!isChecked)} />}
-                            label="Recordar cuenta"
-                        />
+                       
                         <Button
                             type="submit"
                             fullWidth
