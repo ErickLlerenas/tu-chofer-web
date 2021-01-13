@@ -35,7 +35,7 @@ export default function Users() {
                         <Grid item xs={12}>
                             {isLoading ?
                                 <CircularProgress color="secondary" className="loading"/>
-                                : usersList.length!=0 ? <Paper className='paper-table'>
+                                : usersList.length!==0 ? <Paper className='paper-table'>
                                     <ListUsers usersList={usersList} />
                                 </Paper>: <div className="empty">
                                 <FontAwesomeIcon icon={faUsersSlash} className="empty-icon"/><br />

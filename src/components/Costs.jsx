@@ -13,7 +13,7 @@ export default function Costs({title,price}) {
       input: 'text',
       showCloseButton: true,
       inputValue:price.toFixed(2),
-      text: "Costo = Costo Servicio + (Kilómetro * Cost Kilómetro) \+ Costo Base \+ (Minutos * Costo Minuto).",
+      text: "Costo = Costo Servicio + (Kilómetro * Costo Kilómetro) + Costo Base + (Minutos * Costo Minuto).",
       confirmButtonText: 'Editar',
       confirmButtonColor: '#2196F3',
     }).then((result) => {
@@ -32,30 +32,32 @@ export default function Costs({title,price}) {
           }).then(async(result) => {
             if (result.isConfirmed) {
               switch(title){
-                case 'Costo base': {
+                case 'Costo base': 
                   await db.collection('Prices').doc('actualPrices').update({
                     'costoBase' : newValue
                   })
-                }
+                
                 break;
-                case 'Costo servicio': {
+                case 'Costo servicio': 
                   await db.collection('Prices').doc('actualPrices').update({
                     'costoServicio' : newValue
                   })
-                }
+                
                 break;
-                case 'Costo kilómetro': {
+                case 'Costo kilómetro': 
                   await db.collection('Prices').doc('actualPrices').update({
                     'costoKilometro' : newValue
                   })
-                }
+                
                 break;
-                case 'Costo minuto': {
+                case 'Costo minuto': 
                   await db.collection('Prices').doc('actualPrices').update({
                     'costoMinuto' : newValue
                   })
-                }
+                
                 break;
+                default:
+                  break;
               }
               
               Swal.fire(

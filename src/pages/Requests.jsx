@@ -37,7 +37,7 @@ export default function Requests() {
             <Grid item xs={12}>
               {isLoading ?
                 <CircularProgress color="secondary" className="loading" />
-                : requestsList.length != 0 ? <Paper className='paper-table'>
+                : requestsList.length !== 0 ? <Paper className='paper-table'>
                   <ListRequests requestsList={requestsList} />
                 </Paper> : <div className="empty">
                     <NotificationsOffOutlinedIcon className="empty-icon" /><br />

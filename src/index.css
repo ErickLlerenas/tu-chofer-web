@@ -204,6 +204,29 @@ body{
   height: 50px !important;
   background-color: #ff9100 !important;
 }
+
+.signout-icon{
+  height: 200px !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+.service-icon{
+  height: 125px !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+.margin{
+  margin: 10px !important;
+}
+#bold{
+  font-weight: bold !important;
+}
+
+.grey-text{
+  color: grey !important;
+}
+
 /************************* SCROLL BAR ************************/
 /* width */
 ::-webkit-scrollbar {

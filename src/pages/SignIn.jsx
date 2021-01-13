@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -19,8 +17,8 @@ export default function SignInSide() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(credentials.password == userCredentials.password && credentials.mail == userCredentials.mail){
-            sessionStorage.setItem('tu-chofer-credentials',JSON.stringify(credentials));
+        if(credentials.password === userCredentials.password && credentials.mail === userCredentials.mail){
+            localStorage.setItem('tu-chofer-credentials',JSON.stringify(credentials));
             window.location.href = 'inicio'
         }else{
             Swal.fire({

@@ -17,7 +17,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import { Height } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
