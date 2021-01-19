@@ -53,7 +53,7 @@ export default function ChatView({ messages, userType, phone }) {
                             <Paper key={key} className="user-msg">
                                 <p className="name-msg">{m.name}</p>
                                 {m.message}
-                                <p className="time-msg">{m.time.toDate().getHours()}:{m.time.toDate().getMinutes()}</p>
+                                <p className="time-msg">{m.time.toDate().getDate()}/{m.time.toDate().getMonth()+1}/{m.time.toDate().getFullYear()} {m.time.toDate().getHours()}:{m.time.toDate().getMinutes()}</p>
                             </Paper>
                     ))
                 }

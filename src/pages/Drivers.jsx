@@ -22,6 +22,16 @@ export default function Drivers() {
         if (doc.data().isAccepted)
           temp.push(doc.data());
       })
+      temp.sort(function (a, b) {
+        if (a.M > b.M) {
+          return 1
+        }
+        if (a.M < b.M) {
+          return -1
+        }
+        return 0
+      })
+
       setDriversList([...temp]);
       setIsLoading(false);
     })

@@ -78,11 +78,14 @@ export default function Service() {
   }
 
   const showAcceptedServiceAlert = (driver)=>{
-    Swal.fire(
-      'Servicio aceptado.',
-      driver.data().name + ' ha aceptado el servicio.',
-      'success'
-    )
+    Swal.fire({
+      icon:'success',
+      html: `<p><b id="bold">Nombre: </b>${driver.data().name}</p>
+             <p><b id="bold">Carro: </b>${driver.data().carName}</p>
+             <p><b id="bold">Modelo: </b>${driver.data().carModel}</p>
+      `,
+      title: 'Servicio aceptado'    
+    })
   }
 
   const handleClick = () => {
@@ -309,8 +312,14 @@ export default function Service() {
         if (driver.data().isActive) {
           /*If the driver phone is not the same phone of the person who is making the request, I mean, 
           without this validation the driver could ask a service to himself*/
-          if(driver.data().phone!==inputs.phone)
-            activeDrivers.push(driver.data());
+          if(driver.data().phone!==inputs.phone){
+            if(driver.data().tripID!=null){
+              if(!driver.data().tripID.serviceAccepted){
+                activeDrivers.push(driver.data());
+
+              }
+            }
+          }
         }
       }
     })
