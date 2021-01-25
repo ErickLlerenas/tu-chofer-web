@@ -22,6 +22,7 @@ import {
   Route
 } from "react-router-dom";
 import SignOut from './pages/SignOut';
+import ActiveUsers from './pages/ActiveUsers';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -152,6 +153,9 @@ function App() {
         </Route>
         <Route exact path="/usuarios">
           <Users />
+        </Route>
+        <Route exact path="/usuarios-activos">
+          <ActiveUsers />
         </Route>
         <Route exact path="/usuarios/detalles">
           <UserDetails />

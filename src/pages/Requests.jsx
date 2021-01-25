@@ -29,7 +29,7 @@ export default function Requests() {
   return (
     <div className="flex">
       <CssBaseline />
-      <MyDrawer index={5} />
+      <MyDrawer index={6} />
       <main className="drawer-content">
         <Container maxWidth="lg" className='container'>
           <h2>Solicitudes</h2>

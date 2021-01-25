@@ -23,10 +23,10 @@ export default function Drivers() {
           temp.push(doc.data());
       })
       temp.sort(function (a, b) {
-        if (a.M > b.M) {
+        if (parseInt(a.M) > parseInt(b.M)) {
           return 1
         }
-        if (a.M < b.M) {
+        if (parseInt(a.M) < parseInt(b.M)) {
           return -1
         }
         return 0

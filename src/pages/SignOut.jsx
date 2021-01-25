@@ -25,7 +25,7 @@ export default function SignOut() {
     return (
         <div className="flex">
             <CssBaseline />
-            <MyDrawer index={7} />
+            <MyDrawer index={8} />
             <main className="drawer-content">
                 <Container maxWidth="lg" className='container details-container'>
                     <h2>Salir</h2>

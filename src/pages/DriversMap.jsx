@@ -70,16 +70,24 @@ export default function DriversMap() {
                       Swal.fire({
                         icon: 'info',
                         title: marker.tripID.serviceAccepted?'Ocupado':'Disponible',
-                        html:`<p><b id="bold">Chofer: </b>${marker.name}</p>
+                        html:`
+                        <p><b id="bold">M: </b>${marker.M && marker.M}</p>
+                        <p><b id="bold">Chofer: </b>${marker.name}</p>
+                        <p><b id="bold">Teléfono: </b>${marker.phone}</p>
                         <p><b id="bold">Carro: </b>${marker.carName}</p>
                         <p><b id="bold">Modelo: </b>${marker.carModel}</p> 
+                        <p><b id="bold">Usuario: </b>${marker.tripID.serviceAccepted && marker.tripID && marker.tripID.userID}</p>
                         `,
-                        confirmButtonText: 'Desactivar chofer'
+                        confirmButtonText: 'Desactivar chofer',
+                        showConfirmButton: marker.tripID.serviceAccepted?false:true
                       }).then((result)=>{
-                        if(result.isConfirmed){
-                          db.collection('Drivers').doc(marker.phone).update({
-                            'isActive':false
-                          });
+                        if(!marker.tripID.serviceAccepted){
+                          if(result.isConfirmed){
+                            console.log(marker.phone);
+                            db.collection('Drivers').doc(marker.phone).update({
+                              'isActive':false
+                            });
+                          }
                         }
                       });
                     }} key={key} position={{

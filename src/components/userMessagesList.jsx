@@ -3,10 +3,8 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
-import SendIcon from '@material-ui/icons/Send';
 
 export default function UserMessages({ messages }) {
 
@@ -18,18 +16,17 @@ export default function UserMessages({ messages }) {
         <Table>
             <span>Usuarios</span>
             <TableBody>
-                {messages.map((user, i) => (
-                    <TableRow key={i}>
+                {messages.map((user, i) =>{
+                    var date = user.messages && user.messages[user.messages.length - 1].time;
+                    return(
+                    <TableRow key={i} onClick={() => { saveDataToLocalStorage(user) }} component={Link} to='/Chat' style={{textDecoration:'none'}}>
                         <TableCell align="center"><Avatar src={user.image} alt={user.name} className="user-avatar" /></TableCell>
-                        <TableCell>{user.name}<br />{user.phone}</TableCell>
+                        <TableCell><b id="bold">{user.name}</b><br />{user.messages && user.messages[user.messages.length - 1].message}</TableCell>
                         <TableCell>
-                            <Button variant="contained" color="secondary" onClick={() => { saveDataToLocalStorage(user) }} component={Link} to='/Chat'>
-                                <SendIcon />
-
-                            </Button>
+                            {date.toDate().getDate()}/{date.toDate().getMonth()+1}/{date.toDate().getFullYear()}<br/> {date.toDate().getHours()}:{date.toDate().getMinutes()}
                         </TableCell>
                     </TableRow>
-                ))}
+                )})}
             </TableBody>
         </Table>
     );

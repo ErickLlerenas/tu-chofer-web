@@ -57,8 +57,16 @@ export default function ItemList({ index }) {
           <ListItemText primary="Usuarios" />
         </ListItem>
       </Link>
-      <Link to="/solicitudes" className="white link">
+      <Link to="/usuarios-activos" className="white link">
         <ListItem button className="listItem" style={index === 5 ? { backgroundColor: '#ff9100' } : {}}>
+          <ListItemIcon>
+            <PersonIcon className="white" />
+          </ListItemIcon>
+          <ListItemText primary="Usuarios Activos" />
+        </ListItem>
+      </Link>
+      <Link to="/solicitudes" className="white link">
+        <ListItem button className="listItem" style={index === 6 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
             <NotificationsIcon className="white" />
           </ListItemIcon>
@@ -67,7 +75,7 @@ export default function ItemList({ index }) {
       </Link>
 
       <Link to="/mensajes" className="white link">
-        <ListItem button className="listItem" style={index === 6 ? { backgroundColor: '#ff9100' } : {}}>
+        <ListItem button className="listItem" style={index === 7 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
             <MessageIcon className="white" />
           </ListItemIcon>
@@ -75,7 +83,7 @@ export default function ItemList({ index }) {
         </ListItem>
       </Link>
       <Link to="/salir" className="white link">
-        <ListItem button className="listItem" style={index === 7 ? { backgroundColor: '#ff9100' } : {}}>
+        <ListItem button className="listItem" style={index === 8 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
             <ExitToAppIcon className="white" />
           </ListItemIcon>

@@ -20,7 +20,10 @@ export default function Service() {
 
   const APIKEY = "AIzaSyB6TIHbzMpZYQs8VwYMuUZaMuk4VaKudeY";
 
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    origin:'',
+    destination:''
+  });
   let data = {};
   let interval;
   let serviceAccepted = false;
@@ -72,7 +75,7 @@ export default function Service() {
   const showCanceledServiceAlert = ()=>{
     Swal.fire(
       'Servicio cancelado.',
-      'Se ha aceptado el servicio.',
+      'Se ha cancelado el servicio.',
       'error'
     )
   }
@@ -134,7 +137,7 @@ export default function Service() {
       icon: "info",
       title: "Buscando choferes...",
       html: 'Espera mientras un chofer acepta la solicitud.<br/>',
-      allowOutsideClick: false,
+      allowOutsideClick: false, 
       showConfirmButton: true,
       confirmButtonText: 'Cancelar búsqueda',
       confirmButtonColor: '#246BB0'
@@ -233,25 +236,15 @@ export default function Service() {
     return price;
   }
 
-  const getDriverDistance = async (userOrigin, driverOrigin, driversList, driverID, length) => {
-    const google = window.google;
-    const directionsService = new google.maps.DirectionsService();
-    driverOrigin = { lat: driverOrigin.w_, lng: driverOrigin.T_ }
-    directionsService.route(
-      {
-        origin: userOrigin,
-        destination: driverOrigin,
-        travelMode: google.maps.TravelMode.DRIVING
-
-      }, (result, status) => {
-        if (status === google.maps.DirectionsStatus.OK)
-          handleDriverDistance(result, driversList, driverID, length);
-      }
-    )
+  const getDriverDistance = async (driverOrigin, driversList, driverID, length) => {
+    var distanceLat = Math.abs(Math.abs(data.originCoordinates.lat) - Math.abs(driverOrigin.w_));
+    var distanceLng = Math.abs(Math.abs(data.originCoordinates.lng) - Math.abs(driverOrigin.T_));
+    var driverDstance = distanceLat+distanceLng;
+    handleDriverDistance(driverDstance, driversList, driverID, length);
   }
 
-  const handleDriverDistance = (result, driversList, driverID, length) => {
-    driversList.push({ 'distance': result.routes[0].legs[0].distance.value, 'driver': driverID })
+  const handleDriverDistance = (driverDstance, driversList, driverID, length) => {
+    driversList.push({ 'distance': driverDstance, 'driver': driverID })
     driversList.sort(function (a, b) {
       if (a.distance > b.distance) {
         return 1
@@ -266,33 +259,42 @@ export default function Service() {
     if (driversList.length === length) {
       const userData = saveData({ ...data, driversList });
       removeDriverAfter11Seconds(userData);
+      console.log(driversList);
     }
   }
 
   const removeDriverAfter11Seconds = (userData) => {
     if (!serviceAccepted) {
       updateDataToFirebase(userData);
-      console.log(userData.driversList);
       interval = setInterval(() => {
         if (!serviceAccepted) {
           userData.driversList.splice(0, 1);
+          if(userData.driversList.length!==0)
           updateDataToFirebase(userData);
-          console.log(userData.driversList);
           if (userData.driversList.length === 0) {
             clearInterval(interval)
             showNotDriversAvailableAlert();
           }
+          
         }
       }, 11000);
     }
   }
 
   const showNotDriversAvailableAlert = () => {
-    Swal.fire(
-      'Sin choferes.',
-      'No hay choferes disponibles por el momento.',
-      'warning'
-    )
+    db.collection('Users').doc(inputs.phone).update({
+      tripID: {
+        driversList: [],
+        isAskingService: false
+      }
+    }).then(()=>{
+      Swal.fire(
+        'Sin choferes.',
+        'No hay choferes disponibles por el momento. El servicio ha sido cancelado.',
+        'warning'
+      )
+    })
+   
   }
 
   const handleChange = (e) => {
@@ -325,9 +327,12 @@ export default function Service() {
     })
     /*I created two loops, which apparently are the same, but the first loop is to know
     the length of the active drivers, the second one to make request with the length*/
-
+    
     for (let driver in activeDrivers) {
-      await getDriverDistance(inputs.origin, activeDrivers[driver].currentLocation, driversList, activeDrivers[driver].phone, activeDrivers.length);
+      getDriverDistance(activeDrivers[driver].currentLocation, driversList, activeDrivers[driver].phone, activeDrivers.length);
+    }
+    if(activeDrivers.length===0){
+      showNotDriversAvailableAlert();
     }
 
   }

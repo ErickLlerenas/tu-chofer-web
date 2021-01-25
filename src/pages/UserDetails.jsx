@@ -17,9 +17,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Swal from 'sweetalert2'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DriverDetails() {
   const [history, setHistory] = useState([]);
-  const [isAskingService, setIsAskingService] = useState(false);
   const [user, setUser] = useState({});
   const classes = useStyles();
 
@@ -46,47 +42,12 @@ export default function DriverDetails() {
     db.collection("Users").doc(user.phone).get().then(function (doc) {
       if (doc.exists) {
         temp = doc.data().history;
-        setIsAskingService(doc.data().tripID.isAskingService)
-        console.log(doc.data().tripID.isAskingService)
       }
       setHistory([...temp]);
     }).catch(function (error) {
       console.log("Error getting document:", error);
     });
   }, [])
-
-  const showALert = ()=>{
-    Swal.fire({
-      title: '¿Cancelar servicio?',
-      text: "El chofer ya no podrá realizar el servicio",
-      icon: 'warning',
-      confirmButtonColor: '#d33',
-      confirmButtonText: 'Sí, cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        cancelUserRequest();
-      }
-    })
-  } 
-
-  const cancelUserRequest = ()=>{
-    db.collection('Users').doc(user.phone).update({
-      tripID:{
-        driversList:[],
-        isAskingService:false
-      }
-    }).then(()=>{
-      Swal.fire({
-        allowOutsideClick: false,
-        title: 'Servicio cancelado',
-        text: `Se ha cancelado el servicio`,
-        icon: 'info',
-        confirmButtonText: 'Continuar'
-      }).then(()=>{
-        window.location.href = '/usuarios/detalles'
-      })
-    })
-  }
 
   return (
     <div className="flex">
@@ -109,16 +70,7 @@ export default function DriverDetails() {
                   <Typography variant="h6" color="textSecondary" component="p">
                     Teléfono:<br /> {user.phone}
                   </Typography>
-                  {isAskingService &&<Divider />}
-
-                  {isAskingService &&
-                    <Typography variant="h6" color="textSecondary" component="p">
-                      Pidiendo Servicio...
-                  </Typography>}
-                  {isAskingService &&
-                    <Button variant="contained" color="secondary" className="center cancel" onClick={showALert}>
-                      Cancelar servicio
-                  </Button>}
+                  
                 </CardContent>
               </Card>
             </Grid>

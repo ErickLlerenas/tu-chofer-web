@@ -51,7 +51,7 @@ export default function Messages() {
     return (
         <div className="flex">
             <CssBaseline />
-            <MyDrawer index={6} />
+            <MyDrawer index={7} />
             <main className="drawer-content">
                 <Container maxWidth="lg" className='container'>
                     <h2 >Mensajes</h2>
