@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -12,17 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import { db } from "../firebase"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Gains from './Gains';
-
-const useStyles = makeStyles((theme) => ({
-
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  }
-}));
+import DatePickers from '../components/DatePickers';
 
 export default function Dashboard() {
-  const classes = useStyles();
   const [driversList, setDriversList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [prices, setPrices] = useState({});
@@ -100,17 +91,22 @@ export default function Dashboard() {
   return (
     <div className="flex">
       <CssBaseline />
-      <MyDrawer index={0} />
-      <main className="drawer-content">
-        <div className={classes.appBarSpacer} />
+      <MyDrawer index={0}/>
 
-        <Container maxWidth="lg" className={classes.container}>
+      <main className="drawer-content">
+
+        <Container maxWidth="lg" className='container'>
+
           <h2>Inicio</h2>
           {isLoading ? <CircularProgress color="secondary" className="loading" /> : <Grid container spacing={3}>
-            <Grid item xs={9}>
+          <Grid item xs={12} md={6} lg={12}>
+          <DatePickers />
+          </Grid>
+
+            <Grid item xs={12} md={6} lg={9}>
                 <Chart gains={gains} />
             </Grid>
-            <Grid item xs={12} md={3} lg={3}>
+            <Grid item xs={12} md={6} lg={3}>
               <Gains total={total} IVA={IVA} gain={gain}/>
             </Grid>
             <Grid item xs={12} md={6} lg={3}>

@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,ResponsiveContainer
 } from 'recharts';
 
 export default function Chart({gains}) {
@@ -11,9 +11,9 @@ export default function Chart({gains}) {
 
   return (
     <Paper className="dashboard-paper chart-height">
-    <Typography component="h2" variant="h6" color="primary" gutterBottom>Ganancias</Typography>
+    <Typography component="h2" variant="h6" color="primary" gutterBottom>Cantidad de viajes</Typography>
+    <ResponsiveContainer>
         <LineChart
-        width={window.screen.width/1.9}
         height={200}
           data={gains}
           margin={{
@@ -27,6 +27,7 @@ export default function Chart({gains}) {
         <Legend />
         <Line type="monotone" dataKey="ganancias" stroke="#FF9100" activeDot={{ r: 8 }} />
         </LineChart>
+        </ResponsiveContainer>
     </Paper>
   );
 }

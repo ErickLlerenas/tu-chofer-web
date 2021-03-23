@@ -21,7 +21,7 @@ export default function Messages() {
         checkIfNewMessage();
     }, []);
 
-    const checkIfNewMessage = async() => {
+    const checkIfNewMessage = async () => {
         await checkUserMessages();
         await checkDriverMessages();
         setIsLoading(false)
@@ -34,6 +34,7 @@ export default function Messages() {
             if (user.data().messages[user.data().messages.length - 1].name !== "Tu Chofer") {
                 temp.push(user.data())
             }
+
         })
         setUserMessages(temp);
     }

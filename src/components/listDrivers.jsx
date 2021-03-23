@@ -19,7 +19,7 @@ export default function ListDrivers({driversList}) {
     }
 
     return (
-        <Table style={{ padding: 10 }}>
+        <Table style={{ padding: 10}}>
             <TableHead>
                 <TableRow>
                     <TableCell className="tableHead">M</TableCell>

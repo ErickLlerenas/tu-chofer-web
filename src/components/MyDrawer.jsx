@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
-    width: 275,
+    width: 325,
     backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.85) , rgba(0, 0, 0, 0.85)), url(' + BackgroundImage + ')'
   }
 }));

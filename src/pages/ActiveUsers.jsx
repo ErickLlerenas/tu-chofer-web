@@ -39,7 +39,7 @@ export default function ActiveUsers() {
             })
             setUsersList([...temp]);
             setIsLoading(false);
-        })
+        })            
     }
 
     useEffect(() => {

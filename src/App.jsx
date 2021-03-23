@@ -82,7 +82,6 @@ function App() {
 
   const checkIfLogedIn = () => {
     const credentials = JSON.parse(localStorage.getItem('tu-chofer-credentials'));
-    console.log(credentials);
     if (credentials === null) {
       if (window.location.pathname !== "/") { window.location.href = "/" }
     } else {
@@ -91,7 +90,7 @@ function App() {
   }
   const checkMessagesSnapshot = () => {
     db.collection("Drivers")
-      .onSnapshot(function (snapshot) {
+      .get(function (snapshot) {
         let temp = [];
         let count = 0;
         snapshot.forEach((driver) => {
@@ -108,7 +107,7 @@ function App() {
       });
 
     db.collection("Users")
-      .onSnapshot(function (snapshot) {
+      .get(function (snapshot) {
         let temp = [];
         let count = 0;
         snapshot.forEach((user) => {
@@ -119,7 +118,6 @@ function App() {
         });
         if (userMessagesCount !== count) {
           userMessagesCount = count;
-          console.log(count);
           localStorage.setItem('tu-chofer-userMessagesCount',count)
           setUserMessages(temp);
         }
