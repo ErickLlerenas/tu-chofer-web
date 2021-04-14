@@ -6,7 +6,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,ResponsiveContainer
 } from 'recharts';
 
-export default function Chart({gains}) {
+export default function Chart({trips}) {
   
 
   return (
@@ -15,17 +15,17 @@ export default function Chart({gains}) {
     <ResponsiveContainer>
         <LineChart
         height={200}
-          data={gains}
+          data={trips}
           margin={{
-            top: 5, right: 30, left: 20, bottom: 5,
+          left: -35
           }}
         >
                    <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="dia" />
+        <XAxis dataKey="day" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="ganancias" stroke="#FF9100" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="viajes" stroke="#FF9100" activeDot={{ r: 8 }} />
         </LineChart>
         </ResponsiveContainer>
     </Paper>

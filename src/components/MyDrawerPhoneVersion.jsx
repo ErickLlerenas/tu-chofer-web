@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-export default function MyDrawer({index}) {
+export default function MyDrawerPhoneVersion({index}) {
 
   const classes = useStyles();
 

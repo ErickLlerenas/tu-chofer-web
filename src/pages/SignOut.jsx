@@ -31,7 +31,7 @@ export default function SignOut() {
                     <h2>Salir</h2>
                     <Grid container spacing={3} justify="center">
 
-                        <Grid item xs={6}>
+                        <Grid item xs={12} md={8} lg={12}>
                             <div className="sizedBox"></div>
                             <Card className="request-card">
                                 <CardContent>

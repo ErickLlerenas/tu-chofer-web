@@ -35,10 +35,10 @@ export default function Service() {
 
   const handleFireBaseOnSnapshot = () => {
     var unsubscribe = db.collection("Drivers")
+    .where("isAccepted", "==", true)
+      .where("isActive", "==", true)
       .onSnapshot(function (snapshot) {
         snapshot.forEach((driver) => {
-          if (driver.data().tripID != null) {
-            if (driver.data().tripID.serviceAccepted) {
               if (driver.data().tripID.userID === inputs.phone) {
                 serviceAccepted = true;
                 Swal.close();
@@ -47,8 +47,7 @@ export default function Service() {
                 clearInterval(interval);
                 cleanDriversList();
               }
-            }
-          }
+            
         });
       });
   }

@@ -7,14 +7,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
-import SendIcon from '@material-ui/icons/Send';
+import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 
-export default function ListUsers({ usersList }) {
-    const saveValuesLocal = (values)=>{
+export default function ListUsers({ usersList ,ranked,search}) {
+
+    const saveValuesLocally = (values)=>{
         localStorage.setItem('tu-chofer-user',JSON.stringify(values))
-    }
-    const saveDataToLocalStorage = (user)=>{
-        localStorage.setItem('tu-chofer-chat', JSON.stringify(user))
     }
 
     return (
@@ -24,26 +22,34 @@ export default function ListUsers({ usersList }) {
                     <TableCell className="tableHead">Foto de perfil</TableCell>
                     <TableCell className="tableHead">Nombre</TableCell>
                     <TableCell className="tableHead">Teléfono</TableCell>
-                    <TableCell className="tableHead"></TableCell>
+                    <TableCell className="tableHead">Viajes realizados</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
-                {usersList.map((user) => (
+                {usersList.filter((user)=>{
+                    if(search===""){
+                        return user
+                    }else if(user.phone.includes(search)){
+                        return user
+                    }
+                    else if(search==null) return user;
+                }).map((user,index) => (
                     <TableRow key={user.phone} >
-                        <TableCell><Avatar src={user.image} alt={user.name} className="user-avatar" /></TableCell>
+                        <TableCell>
+                            { ranked && index<3 && <EmojiEventsIcon style={index===0?{color:'#FFC300'}:index===1?{color:'#5F6A6A'}:{color:'#BA4A00'}}/>}
+                            <Avatar src={user.image} alt={user.name} className="user-avatar" />
+                            </TableCell>
                         <TableCell>{user.name}</TableCell>
                         <TableCell>{user.phone}</TableCell>
+                        <TableCell>{user.history.length}</TableCell>
+
                         <TableCell>
                             <Button
-                                variant="contained" color="secondary" onClick={() => saveValuesLocal(user)} component={Link} to='usuarios/detalles'>
+                                variant="contained" color="secondary" onClick={() => saveValuesLocally(user)} component={Link} to='usuarios/detalles'>
                                 Ver
                              </Button>
                         </TableCell>
-                        <TableCell>
-                            <Button variant="contained" color="secondary" onClick={()=>saveDataToLocalStorage(user)} component={Link} to='Chat'>
-                                <SendIcon/>
-                            </Button>
-                        </TableCell>
+                       
                     </TableRow>
                 ))}
             </TableBody>

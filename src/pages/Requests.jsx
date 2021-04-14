@@ -17,9 +17,10 @@ export default function Requests() {
   useEffect(() => {
     var temp = [];
 
-    db.collection('Drivers').get().then((querySnapshot) => {
+    db.collection('Drivers')
+    .where("isAccepted", "==", false)
+    .get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        if (!doc.data().isAccepted)
           temp.push(doc.data());
       })
       setRequestsList([...temp]);
@@ -29,11 +30,11 @@ export default function Requests() {
   return (
     <div className="flex">
       <CssBaseline />
-      <MyDrawer index={6} />
+      <MyDrawer index={7} />
       <main className="drawer-content">
         <Container maxWidth="lg" className='container'>
           <h2>Solicitudes</h2>
-          <Grid container spacing={3}>
+          <Grid container>
             <Grid item xs={12}>
               {isLoading ?
                 <CircularProgress color="secondary" className="loading" />

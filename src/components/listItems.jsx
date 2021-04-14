@@ -5,25 +5,26 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import MessageIcon from '@material-ui/icons/Message';
 import PersonIcon from '@material-ui/icons/Person';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { Link } from 'react-router-dom';
+import AirlineSeatReclineNormalIcon from '@material-ui/icons/AirlineSeatReclineNormal';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 
 export default function ItemList({ index }) {
   return (
     <div>
 
-      <Link to="/inicio" className="white link">
+      <a href="/inicio" className="white link">
         <ListItem button className="listItem" style={index === 0 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
             <DashboardIcon className="white" />
           </ListItemIcon>
           <ListItemText primary="Inicio" />
         </ListItem>
-      </Link>
-      <Link to="/servicio" className="white link">
+      </a>
+      <a href="/servicio" className="white link">
 
       <ListItem button className="listItem" style={index === 1 ? { backgroundColor: '#ff9100' } : {}}>
         <ListItemIcon>
@@ -31,8 +32,8 @@ export default function ItemList({ index }) {
         </ListItemIcon>
         <ListItemText primary="Servicio" />
       </ListItem>
-      </Link>
-      <Link to="/mapa" className="white link">
+      </a>
+      <a href="/mapa" className="white link">
 
         <ListItem button className="listItem" style={index === 2 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
@@ -40,56 +41,55 @@ export default function ItemList({ index }) {
           </ListItemIcon>
           <ListItemText primary="Mapa" />
         </ListItem>
-      </Link>
-      <Link to="/choferes" className="white link">
+      </a>
+      <a href="/choferes" className="white link">
         <ListItem button className="listItem" style={index === 3 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
-            <PersonIcon className="white" />
+            <AirlineSeatReclineNormalIcon className="white" />
           </ListItemIcon>
           <ListItemText primary="Choferes" />
         </ListItem>
-      </Link>
-      <Link to="/usuarios" className="white link">
+      </a>
+      <a href="/usuarios" className="white link">
         <ListItem button className="listItem" style={index === 4 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
             <PersonIcon className="white" />
           </ListItemIcon>
           <ListItemText primary="Usuarios" />
         </ListItem>
-      </Link>
-      <Link to="/usuarios-activos" className="white link">
+      </a>
+      <a href="/usuarios-activos" className="white link">
         <ListItem button className="listItem" style={index === 5 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
-            <PersonIcon className="white" />
+            <FavoriteIcon className="white" />
           </ListItemIcon>
           <ListItemText primary="Usuarios Activos" />
         </ListItem>
-      </Link>
-      <Link to="/solicitudes" className="white link">
+      </a>
+      <a href="/mejores-usuarios" className="white link">
         <ListItem button className="listItem" style={index === 6 ? { backgroundColor: '#ff9100' } : {}}>
+          <ListItemIcon>
+            <EmojiEventsIcon className="white" />
+          </ListItemIcon>
+          <ListItemText primary="Mejores usuarios" />
+        </ListItem>
+      </a>
+      <a href="/solicitudes" className="white link">
+        <ListItem button className="listItem" style={index === 7 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
             <NotificationsIcon className="white" />
           </ListItemIcon>
           <ListItemText primary="Solicitudes" />
         </ListItem>
-      </Link>
-
-      <Link to="/mensajes" className="white link">
-        <ListItem button className="listItem" style={index === 7 ? { backgroundColor: '#ff9100' } : {}}>
-          <ListItemIcon>
-            <MessageIcon className="white" />
-          </ListItemIcon>
-          <ListItemText primary="Mensajes" />
-        </ListItem>
-      </Link>
-      <Link to="/salir" className="white link">
+      </a>
+      <a href="/salir" className="white link">
         <ListItem button className="listItem" style={index === 8 ? { backgroundColor: '#ff9100' } : {}}>
           <ListItemIcon>
             <ExitToAppIcon className="white" />
           </ListItemIcon>
           <ListItemText primary="Salir" />
         </ListItem>
-      </Link>
+      </a>
     </div>
   );
 }

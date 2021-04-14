@@ -7,7 +7,7 @@ import Chart from '../components/Chart';
 import Gains from './Gains';
 import HistoryItem from '../components/HistoryItem';
 import EmptyHistory from '../components/EmptyHistory';
-import DatePickers from '../components/DatePickers';
+// import DatePickers from '../components/DatePickers';
 import Grid from '@material-ui/core/Grid';
 import DriverProfileCard from '../components/DriverProfileCard';
 import CarProfileCard from '../components/CarProfileCard';
@@ -68,7 +68,7 @@ export default function DriverDetails() {
           </Grid>
 
           <h2>Historial</h2>
-          <DatePickers />
+          {/* <DatePickers /> */}
 
           <Grid container spacing={3}>
             <Grid item xs={9}>

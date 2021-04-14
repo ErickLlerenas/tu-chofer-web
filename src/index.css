@@ -128,6 +128,28 @@ body{
   top: -75px !important;
   text-align: center !important;
 }
+.floating-btn{
+  display: block !important;
+  position: fixed !important;
+  bottom:20px !important;
+  right:20px !important;
+  background-color: #ff9100 !important;
+
+}
+.drawer{
+  display: none !important;
+}
+.MuiInputBase-root{
+  width: 100% !important;
+}
+@media (min-width: 960px) {
+  .floating-btn{
+    display: none !important;
+  }
+  .drawer{
+    display: block !important;
+  }
+}
 
 .center{
   text-align: center !important;

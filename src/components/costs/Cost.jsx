@@ -2,10 +2,11 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Swal from 'sweetalert2'
-import { db } from "../firebase"
+import { db } from "../../firebase"
 
-export default function Costs({title,price}) {
+export default function Cost({title,price,isLoading}) {
 
   const handleClick = ()=>{
     Swal.fire({
@@ -85,11 +86,13 @@ export default function Costs({title,price}) {
   return (
     <React.Fragment>
       <Typography component="h2" variant="h6" color="primary" gutterBottom>{title}</Typography>
+      {!isLoading?<div>
       <Typography component="p" variant="h4">
         ${price && price.toFixed(2)}
       </Typography>
         <br/>
-        <Button
+       
+       <Button
         onClick={handleClick}
         className="link"
         variant="outlined"
@@ -98,6 +101,8 @@ export default function Costs({title,price}) {
       >
         Editar
       </Button>
+       </div>:<CircularProgress />
+}
     </React.Fragment>
   );
 }
