@@ -66,7 +66,7 @@ export default function HistoryItem({ h , i , driverPhone }) {
     <Grid item xs={4}>
       <Paper
       onClick={ ()=>{
-        if(h.payedWithCard && h.payedWithCard)
+        if(h.payedWithCard && !h.cardPaymentComplete)
           showConfirmAlert(h.cost)
         }}
         style={
