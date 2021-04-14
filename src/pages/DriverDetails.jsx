@@ -16,7 +16,9 @@ import DeleteDriverButton from '../components/DeleteDriverButton';
 export default function DriverDetails() {
 
   const [history, setHistory] = useState([]);
-  const [driver, setDriver] = useState({});
+  const [driver, setDriver] = useState({
+    phone:''
+  });
   const [gains, setGains] = useState([]);
   const [total, setTotal] = useState(0);
   const [IVA, setIVA] = useState(0);
@@ -78,8 +80,8 @@ export default function DriverDetails() {
               <Gains total={total} IVA={IVA} gain={gain} />
             </Grid>
 
-            {history.map((history, key) => (
-              <HistoryItem key={key} history={history} />
+            {history.map((h, key) => (
+              <HistoryItem key={key} h={h} i={key} driverPhone={driver.phone}/>
             ))}
 
           </Grid>
