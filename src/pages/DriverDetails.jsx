@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import DriverProfileCard from '../components/DriverProfileCard';
 import CarProfileCard from '../components/CarProfileCard';
 import DeleteDriverButton from '../components/DeleteDriverButton';
+import CreditGains from '../components/CreditGains';
 
 export default function DriverDetails() {
 
@@ -23,11 +24,21 @@ export default function DriverDetails() {
   const [total, setTotal] = useState(0);
   const [IVA, setIVA] = useState(0);
   const [gain, setGain] = useState(0);
+  const [creditGains,setCreditGains] = useState(0);
 
   useEffect(() => {
     var temp = []
+    var creditTemp = 0;
     var totaltemp = 0;
     history.forEach((gain, index) => {
+      if(gain.payedWithCard){
+
+        if(gain.cardPaymentComplete==null){
+          creditTemp+= gain.cost;
+
+        }
+      }
+      console.log(gain);
       temp.push({
         dia: index + 1,
         ganancias: gain.cost
@@ -35,6 +46,7 @@ export default function DriverDetails() {
       totaltemp += gain.cost;
     });
     setGains(temp);
+    setCreditGains(creditTemp);
     setTotal(totaltemp);
     setIVA(totaltemp * 0.16);
     setGain(totaltemp * 0.84);
@@ -73,8 +85,11 @@ export default function DriverDetails() {
           {/* <DatePickers /> */}
 
           <Grid container spacing={3}>
-            <Grid item xs={9}>
+            <Grid item xs={6}>
               <Chart gains={gains} />
+            </Grid>
+            <Grid item xs={12} md={3} lg={3}>
+              <CreditGains creditGains={creditGains}total={total} driverPhone={driver.phone}/>
             </Grid>
             <Grid item xs={12} md={3} lg={3}>
               <Gains total={total} IVA={IVA} gain={gain} />
@@ -89,7 +104,7 @@ export default function DriverDetails() {
             <EmptyHistory />
           }
           <Grid>
-            <h2>Eliminar</h2>
+            <h2>Jaquemate Chofer</h2>
             <DeleteDriverButton driver={driver} />
           </Grid>
         </Container>

@@ -21,7 +21,7 @@ export default function Dashboard() {
   const [gain, setGain] = useState(0);
   const [dates, setDates] = useState({
     startDate: moment().startOf("month"),
-    endDate: moment().day("month"),
+    endDate: moment().days("month"),
   });
 
   useEffect(() => {

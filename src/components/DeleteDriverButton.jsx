@@ -38,7 +38,7 @@ export default function DeleteDriverButton({driver}) {
 
     return (
         <Button variant="contained" color="primary" className="center cancel" onClick={showALert}>
-            Eliminar Chofer
+            Bye bye chofer
         </Button>
     );
 }
