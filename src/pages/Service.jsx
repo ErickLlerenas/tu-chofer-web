@@ -227,8 +227,8 @@ export default function Service() {
     let pricing = await getPricingValues();
     let price = pricing.costoServicio;
 
-    if (distanceValue > 3000) {
-      price += parseInt((((distanceValue - 3000) / 1000) * pricing.costoKilometro) +
+    if (distanceValue > (pricing.minKM * 1000)) {
+      price += parseInt((((distanceValue - (pricing.minKM * 1000)) / 1000) * pricing.costoKilometro) +
         pricing.costoBase +
         (durationValue / 60 * pricing.costoMinuto))
     }
