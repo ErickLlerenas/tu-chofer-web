@@ -16,7 +16,7 @@ export default function Km({ title, price }) {
       showCloseButton: true,
       inputValue: price.toFixed(2),
       text:
-        "Los kilómetros mínimos son la cantidad de kilómetros recorridos desde que empezará a contar los precios del viaje.",
+        "Cantidad de kilómetros recorridos desde que empezará a contar los precios del viaje.",
       confirmButtonText: "Editar",
       confirmButtonColor: "#2196F3",
     }).then((result) => {

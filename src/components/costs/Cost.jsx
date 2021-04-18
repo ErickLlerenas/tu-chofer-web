@@ -14,7 +14,7 @@ export default function Cost({title,price,isLoading}) {
       input: 'text',
       showCloseButton: true,
       inputValue:price.toFixed(2),
-      text: "Costo = Costo Servicio + (Kilómetro * Costo Kilómetro) + Costo Base + (Minutos * Costo Minuto).",
+      text: title != "Costo kilómetro foráneo" ? "Costo = Costo Servicio + (Kilómetro * Costo Kilómetro) + Costo Base + (Minutos * Costo Minuto).": "Costo = CostoKilómetroForáneo * kilómetros",
       confirmButtonText: 'Editar',
       confirmButtonColor: '#2196F3',
     }).then((result) => {
@@ -54,6 +54,11 @@ export default function Cost({title,price,isLoading}) {
                 case 'Costo minuto': 
                   await db.collection('Prices').doc('actualPrices').update({
                     'costoMinuto' : newValue
+                  })
+
+                  case 'Costo kilómetro foráneo': 
+                  await db.collection('Prices').doc('actualPrices').update({
+                    'costoKilometroForaneo' : newValue
                   })
                 
                 break;

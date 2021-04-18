@@ -45,6 +45,11 @@ export default function Costs() {
       </Grid>
       <Grid item xs={12} md={6} lg={4}>
         <Paper className="dashboard-paper">
+          <Cost title="Costo kilómetro foráneo" price={prices.costoKilometroForaneo} isLoading={isLoading}/>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={6} lg={4}>
+        <Paper className="dashboard-paper">
         <Km title="Kilómetros mínimos" price={prices.minKM}/>
         </Paper>
       </Grid>
