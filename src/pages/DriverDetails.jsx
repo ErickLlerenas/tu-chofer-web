@@ -13,6 +13,7 @@ import DriverProfileCard from '../components/DriverProfileCard';
 import CarProfileCard from '../components/CarProfileCard';
 import DeleteDriverButton from '../components/DeleteDriverButton';
 import CreditGains from '../components/CreditGains';
+import StuckDriverButton from '../components/StuckDriverButton';
 
 export default function DriverDetails() {
 
@@ -103,6 +104,10 @@ export default function DriverDetails() {
           {history.length === 0 &&
             <EmptyHistory />
           }
+          <Grid>
+            <h2>¿Trabado?</h2>
+            <StuckDriverButton driver={driver} />
+          </Grid>
           <Grid>
             <h2>Jaquemate Chofer</h2>
             <DeleteDriverButton driver={driver} />

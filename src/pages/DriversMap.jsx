@@ -170,10 +170,10 @@ export default function DriversMap() {
     width: "100%",
   };
 
-  var defaultCenter = {
+  const [defaultCenter,setDefaultCenter] = useState({
     lat: 19.2563683,
     lng: -103.7255604,
-  };
+  });
 
   return (
     <div className="flex">
@@ -189,7 +189,7 @@ export default function DriversMap() {
                   options={{
                     styles: mapColorStyle,
                   }}
-                  onCenterChanged={()=>{}}
+                  
                   mapContainerStyle={mapStyles}
                   zoom={13}
                   center={defaultCenter}

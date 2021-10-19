@@ -37,15 +37,24 @@ export default function Service() {
       .collection("Drivers")
       .where("isAccepted", "==", true)
       .where("isActive", "==", true)
-      .onSnapshot(function (snapshot) {
-        snapshot.forEach((driver) => {
+      .onSnapshot(function  (snapshot) {
+        snapshot.forEach(async(driver) => {
           if (driver.data().tripID.userID === inputs.phone) {
-            serviceAccepted = true;
-            Swal.close();
-            showAcceptedServiceAlert(driver);
-            unsubscribe();
-            clearInterval(interval);
-            cleanDriversList();
+            await db.collection('Users').doc(inputs.phone).get().then((user)=>{
+              if(user.exists){
+                if(user.data().tripID!=null){
+                  if(user.data().tripID.isAskingService){
+                    Swal.close();
+                    serviceAccepted = true;
+                    showAcceptedServiceAlert(driver);
+                    unsubscribe();
+                    clearInterval(interval);
+                    cleanDriversList();
+                  }
+                }
+              }
+            });
+           
           }
         });
       });
@@ -384,9 +393,12 @@ export default function Service() {
           without this validation the driver could ask a service to himself*/
           if (driver.data().phone !== inputs.phone) {
             if (driver.data().tripID != null) {
-              if (!driver.data().tripID.serviceAccepted) {
-                activeDrivers.push(driver.data());
+              if(driver.data().currentLocation!=null){
+                if (!driver.data().tripID.serviceAccepted) {
+                  activeDrivers.push(driver.data());
+                }
               }
+              
             }
           }
         }
