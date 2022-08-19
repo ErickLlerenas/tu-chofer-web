@@ -1,0 +1,14 @@
+export const ACTIVE_USERS = "/usuarios-activos";
+export const BEST_USERS = "/mejores-usuarios";
+export const DASHBOARD = "/inicio";
+export const DRIVERS = "/choferes";
+export const DRIVER_DETAILS = "/choferes/detalles";
+export const LOGIN = "/";
+export const LOGOUT = "/salir";
+export const MAP = "/mapa";
+export const SERVICE = "/servicio";
+export const USERS = "/usuarios";
+export const USERS_DETAILS = "/usuarios/detalles";
+export const POLICY = "/politica-de-privacidad";
+export const REQUESTS = "/solicitudes";
+export const REQUESTS_DETAILS = "/solicitudes/detalles";

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import MyDrawer from "../components/MyDrawer";
+import MyDrawer from "../../components/MyDrawer";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Swal from "sweetalert2";
-import { db } from "../firebase";
-import ServiceImg from "../assets/service.png";
+import { db } from "../../firebase";
+import ServiceImg from "../../assets/images/png/service.png";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import Divider from "@material-ui/core/Divider";
 import Geocode from "react-geocode";
@@ -509,7 +508,6 @@ export default function Service() {
 
 	return (
 		<div className="flex">
-			<CssBaseline />
 			<MyDrawer index={1} />
 			<main className="drawer-content">
 				<Container

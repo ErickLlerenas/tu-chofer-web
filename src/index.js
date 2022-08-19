@@ -1,28 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import "./firebase";
-import reportWebVitals from "./reportWebVitals";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { CssBaseline } from "@material-ui/core/";
 
-const theme = createMuiTheme({
-	palette: {
-		primary: {
-			main: "#2196f3",
-		},
-		secondary: {
-			main: "#da2d84",
-			contrastText: "#fff",
-		},
-	},
-});
+import App from "./App";
+import ThemeProvider from "./theme";
+import "./firebase";
+import "./index.css";
 
 ReactDOM.render(
-	<MuiThemeProvider theme={theme}>
+	<ThemeProvider>
+		<CssBaseline />
 		<App />
-	</MuiThemeProvider>,
+	</ThemeProvider>,
 	document.getElementById("root")
 );
-
-reportWebVitals();

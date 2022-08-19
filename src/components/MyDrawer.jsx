@@ -5,7 +5,7 @@ import Divider from "@material-ui/core/Divider";
 import ItemList from "./listItems";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import BackgroundImage from "../assets/BackgroundImage.png";
+import BackgroundImage from "../assets/images/png/BackgroundImage.png";
 
 const useStyles = makeStyles(() => ({
 	drawerPaper: {

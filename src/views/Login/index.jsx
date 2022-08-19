@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Logo from "../assets/Logo.png";
-import { db } from "../firebase";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
+import {
+	Button,
+	TextField,
+	Grid,
+	Paper,
+	Box,
+	Typography,
+} from "@material-ui/core/";
 
-export default function SignInSide() {
+import { setToLocalStorage } from "../../helpers/localStorage";
+import { MAIL, PASSWORD } from "../../constants/keys";
+
+import Logo from "../../assets/images/png/Logo.png";
+import { STORAGE_CREDENTIALS } from "../../constants/localStorage";
+
+export default function Login() {
 	const [credentials, setCredentials] = useState({});
-	const [userCredentials, setUserCredentials] = useState({});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (
-			credentials.password === userCredentials.password &&
-			credentials.mail === userCredentials.mail
-		) {
-			localStorage.setItem(
-				"tu-chofer-credentials",
-				JSON.stringify(credentials)
-			);
+		if (PASSWORD === credentials.password && MAIL === credentials.mail) {
+			setToLocalStorage(STORAGE_CREDENTIALS, credentials);
 			window.location.href = "inicio";
 		} else {
 			Swal.fire({
@@ -34,25 +32,15 @@ export default function SignInSide() {
 		}
 	};
 
-	const handleChange = (e) => {
-		setUserCredentials({
-			...userCredentials,
-			[e.target.name]: e.target.value,
+	const handleChange = ({ target: { name, value } }) => {
+		setCredentials({
+			...credentials,
+			[name]: value,
 		});
 	};
 
-	useEffect(() => {
-		db.collection("Web")
-			.doc("credentials")
-			.get()
-			.then((doc) => {
-				if (doc.data()) setCredentials(doc.data());
-			});
-	}, []);
-
 	return (
 		<Grid container className="root">
-			<CssBaseline />
 			<Grid item xs={false} sm={4} md={7} className="backgroundImage" />
 			<Grid
 				item

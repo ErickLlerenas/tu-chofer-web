@@ -18,7 +18,7 @@ h1 {
 }
 .backgroundImage {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url(assets/BackgroundImage.png);
+		url(assets/images/png/BackgroundImage.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-color: grey !important;
